@@ -493,8 +493,19 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  let max = 1;
+  let cur = 1;
+  nums.reduce((acc, item) => {
+    if (item > acc) {
+      cur += 1;
+      max = max < cur ? cur : max;
+    } else cur = 1;
+
+    return item;
+  });
+
+  return max;
 }
 
 /**
@@ -584,7 +595,7 @@ function sortDigitNamesByNumericOrder(arr) {
  *
  */
 function swapHeadAndTail(arr) {
-  const halved = arr.length / 2;                              //??
+  const halved = arr.length / 2; // ??
   const head = arr.splice(0, Math.floor(halved));
   const tail = arr.splice(-Math.floor(halved));
   return [...tail, ...arr, ...head];
